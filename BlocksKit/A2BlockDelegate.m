@@ -156,7 +156,7 @@ static inline SEL prefixedSelector(SEL selector) {
 
 				if ([delegatingObject respondsToSelector:a2_setter]) {
 					id originalDelegate = objc_msgSend(delegatingObject, a2_getter);
-					if (!bk_object_isKindOfClass(originalDelegate, [A2DynamicDelegate class]))
+					if (originalDelegate && !bk_object_isKindOfClass(originalDelegate, [A2DynamicDelegate class]))
 						objc_msgSend(delegatingObject, a2_setter, dynamicDelegate);
 				}
 			}
@@ -216,7 +216,7 @@ static inline SEL prefixedSelector(SEL selector) {
 
 		if ([delegatingObject respondsToSelector:a2_setter]) {
 			id originalDelegate = objc_msgSend(delegatingObject, a2_getter, delegate);
-			if (!bk_object_isKindOfClass(originalDelegate, [A2DynamicDelegate class]))
+			if (originalDelegate && !bk_object_isKindOfClass(originalDelegate, [A2DynamicDelegate class]))
 				objc_msgSend(delegatingObject, a2_setter, dynamicDelegate);
 		}
 
